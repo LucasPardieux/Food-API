@@ -60,4 +60,17 @@ module.exports = {
         }
     },
 
+    getLastId: async function (){
+        let lastRecipe = await this.getRecipe();
+        let arrayId =[];
+        for(let x in lastRecipe){
+            arrayId.push(lastRecipe[x].id)
+        } 
+        let lastID = arrayId.sort((a, b)=>{
+            return a-b;
+        })
+        lastID = lastID.pop();
+        return lastID;
+    },
+
 }

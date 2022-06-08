@@ -8,23 +8,28 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
       unique: true,
-      allowNull:false
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     summary: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     health_score: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    recipe:{
+    stepByStep:{
       type: DataTypes.TEXT,
       allowNull: true,
     },
+    RecipeDiet:{
+      type: DataTypes.TEXT,
+      allowNull: true
+    }
+  },{
+    timestamps:false
   });
 };
