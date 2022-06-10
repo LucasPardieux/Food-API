@@ -42,7 +42,7 @@ const {API_KEY} = process.env;
         const id = await models.getLastId()+1;
         try {
             const newRecipe = await Recipe.create({
-                id:id, name:title, summary:summary, health_score:health_score, stepByStep:recipe, RecipeDiet:diets
+                id:id, title:title, summary:summary, health_score:health_score, stepByStep:recipe, RecipeDiet:diets
             })
             console.log(newRecipe)
             res.status(201).send(newRecipe)

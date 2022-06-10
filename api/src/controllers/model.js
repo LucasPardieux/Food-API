@@ -44,7 +44,7 @@ module.exports = {
         let arrayAux = [];
         let rpta;
         try {
-            const info = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true`)
+            const info = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
             const infoDB = await Recipe.findAll();
             rpta = info.data.results;
             let arrayConcat = rpta.concat(infoDB)
