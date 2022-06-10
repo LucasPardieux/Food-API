@@ -34,9 +34,9 @@ export const foodSlice = createSlice({
 
 
 // -------------EXPORTS------------
-export const {setAllRecipes, setRecipe, setAllDiets, setDiet} = foodSlice.actions
+export const {setAllRecipes, setRecipe, setAllDiets, setDiet, setLoading} = foodSlice.actions
 
-export default dogSlice.reducer;
+export default foodSlice.reducer;
 
 //--------------ACTIONS------------
 
@@ -44,7 +44,8 @@ export const getAllRecipes = () => async (dispatch) =>{
 
     try {
         dispatch(setLoading(true));
-        const recipes = await axios.get("localhost:3001/recipes/");
+        const recipes = await axios.get("http://localhost:3001/recipes/");
+        console.log(recipes)
         dispatch(setAllRecipes(recipes.data));
         dispatch(setLoading(false));
     } catch (error) {

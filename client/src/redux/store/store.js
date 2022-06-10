@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import dogs from "../reducer"
+import food from "../reducer/reducer.js"
 
 const store = configureStore({
    reducer: {
-      dogs
+      food
    }
 })
 
