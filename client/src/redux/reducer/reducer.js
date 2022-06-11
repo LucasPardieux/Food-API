@@ -55,10 +55,20 @@ export const getAllRecipes = () => async (dispatch) =>{
 
 export const getRecipe = (name) => async (dispatch) =>{
 
-    return axios.get(`localhost:3001/recipes?name=${name}`)
+    return axios.get(`http://localhost:3001/recipes?name=${name}`)
         .then((response) => response.data)
         .then((data) =>{
             dispatch(setRecipe(data))
+        })
+        .catch((error)=> console.log(error))
+}
+
+export const getAllDiets = () => async (dispatch) => {
+
+    return axios.get(`http://localhost:3001/diets/`)
+        .then((response) => response.data)
+        .then((data) =>{
+            dispatch(setAllDiets(data))
         })
         .catch((error)=> console.log(error))
 }
