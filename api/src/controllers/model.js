@@ -37,6 +37,7 @@ module.exports = {
                 }) 
             }
         }
+        return dietDB;
     },
 
     getRecipe: async function(name){
