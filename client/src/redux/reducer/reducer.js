@@ -65,7 +65,7 @@ export const getRecipe = (name) => async (dispatch) =>{
 
 export const getAllDiets = () => async (dispatch) => {
 
-    return axios.get(`http://localhost:3001/diets/`)
+    return axios.get(`http://localhost:3001/diet/`)
         .then((response) => response.data)
         .then((data) =>{
             dispatch(setAllDiets(data))

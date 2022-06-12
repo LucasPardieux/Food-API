@@ -6,29 +6,32 @@ import logo from "../../image/transparent-restaurant-icon-food-icon-wine-icon-5e
 
 const Nav = () => {
 
-    const contenedor = document.getElementById('NavCont')
+    // const contenedor = document.getElementById('NavCont')
 
-    const doAnimation = (entry) => {
-        entry.forEach(entry => {
-            if(!entry.isIntersecting){
-                console.log("vamoo");
-            }
-        });
-    }
+    // const doAnimation = (entry) => {
+    //     entry.forEach(entry => {
+    //         if(!entry.isIntersecting){
+    //             console.log(entry);
+    //             entry.target.className = "Nav_notVisible__1-0HA"
+    //         }else{
+    //             //entry.target.className = "Nav_menuContainer__21ix7"
+    //         }
+    //     });
+    // }
 
-    const watcher = new IntersectionObserver(doAnimation, {
-        root: null,
-        rootMargin: "0px 0px 0px 0px",
-        threshold: 1
-    });
+    // const watcher = new IntersectionObserver(doAnimation, {
+    //     root: null,
+    //     rootMargin: "0px 0px 0px 0px",
+    //     threshold: 1
+    // });
 
     
 
-    useEffect(() => {
-        if(contenedor !== null){
-            watcher?.observe(contenedor);
-        }
-    }, [contenedor])
+    // useEffect(() => {
+    //     if(contenedor !== null){
+    //         watcher?.observe(contenedor);
+    //     }
+    // }, [contenedor])
     
 
 

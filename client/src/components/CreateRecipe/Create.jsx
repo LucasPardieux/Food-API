@@ -111,16 +111,16 @@ export class Create extends Component {
               <div className={`${style.inputs}`}>
                 <h5>Recipe title:*</h5>
                 <input name="title" type="text" onChange={this.handleChange} />
-                {!this.state.errors.name ? null : <div className={`${style.error}`}>{this.state.errors.name}</div>}
+                {!this.state.errors.title ? null : <div className={`${style.error}`}>{this.state.errors.title}</div>}
                 <h5>summary:*</h5>
                 <input name="summary" type="text" onChange={this.handleChange} />
-                {!this.state.errors.bred_for ? null : <div className={`${style.error}`}>{this.state.errors.bred_for}</div>}
+                {!this.state.errors.summary ? null : <div className={`${style.error}`}>{this.state.errors.summary}</div>}
                 <h5>Health score:</h5>
-                <input name="health_score" type="text" onChange={this.handleChange} />
-                {!this.state.errors.origin ? null : <div className={`${style.error}`}>{this.state.errors.origin}</div>}
+                <input name="health_score" type="number" onChange={this.handleChange} />
+                {!this.state.errors.health_score ? null : <div className={`${style.error}`}>{this.state.errors.health_score}</div>}
                 <h5>Step by step:</h5>
-                <input name="stepByStep" type="number" min={6} max={19} onChange={this.handleChange} />
-                {!this.state.errors.lifeSpan ? null : <div className={`${style.error}`}>{this.state.errors.lifeSpan}</div>}
+                <input name="stepByStep" type="text" min={6} max={19} onChange={this.handleChange} />
+                {!this.state.errors.stepByStep ? null : <div className={`${style.error}`}>{this.state.errors.stepByStep}</div>}
                 <h5>Image url:*</h5>
                 <input name="image" type="text" onChange={this.handleChange} />
                 {!this.state.errors.image ? null : <div className={`${style.error}`}>{this.state.errors.image}</div>}
@@ -128,10 +128,10 @@ export class Create extends Component {
               <h5>Diet type:*</h5>
               <div className={`${style.checkCont}`}>
                 <ul className={`${style.UndordenedList}`}>
-                  {this.props.allDiets && this.props.allDiets.map((diet) => {
+                  {this.props.allDiets && this.props.allDiets?.map((diet) => {
                     return (
                       <li className={`${style.listItem}`} key={diet.id}>
-                        <label htmlFor={diet.title}>{diet.title}</label><input type="checkbox" name="RecipeDiet" value={diet.title} onChange={this.handleChange} />
+                        <label htmlFor={diet.name}>{diet.name}</label><input type="checkbox" name="RecipeDiet" value={diet.name} onChange={this.handleChange} />
                       </li>
                     )
                   })}

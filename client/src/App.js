@@ -9,6 +9,9 @@ import Nav from './components/Nav/Nav.jsx'
 import Create from './components/CreateRecipe/Create.jsx';
 
 function App() {
+
+  const ITEMS_PER_PAGE = 8;
+
   return (
     <BrowserRouter>
       <Route path='/' component={Nav}/>
