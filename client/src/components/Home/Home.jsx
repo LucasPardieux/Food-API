@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect, useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getAllRecipes, getAllDiets } from '../../redux/reducer/reducer'
 import image1 from "../../image/pexels-photo-209449.jpeg"
 import image2 from "../../image/pexels-photo-239581.webp"

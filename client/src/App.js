@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Home from './components/Home/Home.jsx';
 import Nav from './components/Nav/Nav.jsx'
 import Create from './components/CreateRecipe/Create.jsx';
+import Details from './components/Details/Details';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <BrowserRouter>
       <Route path='/' component={Nav}/>
       <Route path='/home' component={Home}/>
+      <Route path='/details/:recipeName' component={Details}/>
       <Route path='/createRecipe' component={Create}/>
     </BrowserRouter>
   );

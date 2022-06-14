@@ -19,22 +19,6 @@ const Card = ({ title, healthScore, servings, image, diets }) => {
                 </div>
             </div>
         </div>
-        // <div>
-        //     <div>
-        //         <img src={image} alt="foods image" />
-        //     </div>
-        //     <div>
-        //         <h2>{title}</h2>
-        //         <div>
-        //             <label>Health Score: </label>
-        //             <p>{healthScore}</p>
-        //             <label>Servings: </label>
-        //             <p>{servings}</p>
-        //             <label>Diets:</label>
-        //             <p>{diets}</p>
-        //         </div>
-        //     </div>
-        // </div>
     )
 }
 

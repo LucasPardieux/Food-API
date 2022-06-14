@@ -45,7 +45,6 @@ export const getAllRecipes = () => async (dispatch) =>{
     try {
         dispatch(setLoading(true));
         const recipes = await axios.get("http://localhost:3001/recipes/");
-        console.log(recipes)
         dispatch(setAllRecipes(recipes.data));
         dispatch(setLoading(false));
     } catch (error) {
@@ -54,10 +53,10 @@ export const getAllRecipes = () => async (dispatch) =>{
 }
 
 export const getRecipe = (name) => async (dispatch) =>{
-
     return axios.get(`http://localhost:3001/recipes?name=${name}`)
         .then((response) => response.data)
         .then((data) =>{
+            console.log(data)
             dispatch(setRecipe(data))
         })
         .catch((error)=> console.log(error))

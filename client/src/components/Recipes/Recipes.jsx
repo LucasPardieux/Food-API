@@ -1,14 +1,17 @@
 import React from 'react'
 import Card from '../Card/Card';
 import style from "./Recipes.module.css"
+import { Link } from 'react-router-dom';
 
 const Recipes = (props) => {
 
     const eachRecipe = props.allRecipes?.map((r) => {
         return (
             <div className={`${style.eachRecipe}`}>
-                <li key={r.id}>
+                <Link to={`/details/${r.title}`}>
+                <li >
                     <Card
+                        key={r.id}
                         title={r.title}
                         healthScore={r.healthScore}
                         servings={r.servings}
@@ -16,6 +19,7 @@ const Recipes = (props) => {
                         diets={r.diets}
                     />
                 </li>
+                </Link>
             </div>
         )
     })
