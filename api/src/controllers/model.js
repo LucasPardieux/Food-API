@@ -40,15 +40,16 @@ module.exports = {
         return dietDB;
     },
 
-    getRecipe: async function(name){
+    getRecipe: async function(name, amount=100){
 
         let arrayAux = [];
         let rpta;
         try {
-            const info = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+            const info = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=${amount}`)
             const infoDB = await Recipe.findAll();
+            console.log(infoDB[0].dataValues)
             rpta = info.data.results;
-            let arrayConcat = rpta.concat(infoDB)
+            let arrayConcat = rpta.concat(infoDB[0].dataValues)
                 if (name !== undefined) {
                     arrayAux = arrayConcat.filter((recipe) => recipe.title.includes(name));
                     if (arrayAux.length === 0) throw new Error({ error: "The requested recipe was not found" });
@@ -62,7 +63,7 @@ module.exports = {
     },
 
     getLastId: async function (){
-        let lastRecipe = await this.getRecipe();
+        let lastRecipe = await this.getRecipe(undefined, 5220);
         let arrayId =[];
         for(let x in lastRecipe){
             arrayId.push(lastRecipe[x].id)
