@@ -14,7 +14,7 @@ const Home = () => {
 
   const allRecipes = useSelector(state => state.food.allRecipes);
   const loading = useSelector(state => state.food.loading);
-  const diets = useSelector(state => state.food.diets);
+  const allDiets = useSelector(state => state.food.allDiets);
 
   const dispatch = useDispatch();
   const ITEMS_PER_PAGE = 8;
@@ -32,7 +32,7 @@ const Home = () => {
       updateState();
     }
   }, [])
-  
+
   var [dataFromApi, satDataFromApi] = useState(allRecipes)
   var [items, setItems] = useState([...allRecipes].splice(0, ITEMS_PER_PAGE))
   var [currentPage, setCurrentPage] = useState(0);
@@ -59,11 +59,31 @@ const Home = () => {
     return filtered.slice(currentPage, currentPage + ITEMS_PER_PAGE)
   }
 
+  const dietSelect = (e) => {
+    const diet = e.target.value;
+    if (diet === "null") {
+      return satDataFromApi(allRecipes)
+    }
+    const filteredRecipes = allRecipes.filter((r) => {
+      if (r.hasOwnProperty("diets")) {
+        return r.diets?.includes(diet)
+      } else {
+        return r.diets?.includes(diet)
+      }
+    })
+    satDataFromApi(filteredRecipes)
+  }
+
+
+
+
+
+
   const nextHandler = () => {
     if (dataFromApi.filter(recipe => recipe.title.includes(search)).length > currentPage + 8) {
       pageCount = pageCount + 1;
       setCurrentPage(currentPage + ITEMS_PER_PAGE)
-    }else{
+    } else {
       setCurrentPage(currentPage)
     }
   }
@@ -90,106 +110,144 @@ const Home = () => {
     setSearch(newInput)
   }
 
+  const healthOrder = (e) => {
+    let value = e.target.value;
+    let check = e.target.checked;
 
+
+    if (check === false) {
+      satDataFromApi(allRecipes);
+    }
+
+    if (value === "down") {
+      const neatArray = [...dataFromApi].sort((next, prev) => {
+
+        if (prev.healthScore < next.healthScore) {
+          return 1;
+        } else {
+          return -1;
+        }
+        return 0
+
+      })
+      satDataFromApi(neatArray)
+    }
+
+    if (value === "up") {
+      const neatArray = [...dataFromApi].sort((next, prev) => {
+
+        if (prev.healthScore > next.healthScore) {
+          return 1;
+        } else {
+          return -1;
+        }
+        return 0
+
+      })
+      satDataFromApi(neatArray)
+
+    }
+  }
+
+  const alphaOrder = (e) => {
+    const value = e.target.value;
+    const check = e.target.checked;
+
+    if (check === false) {
+      satDataFromApi(allRecipes);
+    }
+
+    if (value === "up") {
+      const neatArray = [...dataFromApi].sort((prev, next) => {
+        if (prev.title > next.title) {
+          return 1;
+        }
+        if (prev.title < next.title) {
+          return -1;
+        }
+        return 0;
+      })
+      satDataFromApi(neatArray);
+    }
+    if (value === "down") {
+      const neatArray = [...dataFromApi].sort((prev, next) => {
+        if (prev.title > next.title) {
+          return -1;
+        }
+        if (prev.title < next.title) {
+          return 1;
+        }
+        return 0;
+      })
+      satDataFromApi(neatArray)
+    }
+  }
 
   return (
     <div>
-         <div className={`${style.container}`}>
-           <ul className={`${style.slider}`}>
-             <li className={`${style.slide1}`}>
-               <img src={image1} alt="food1" />
-             </li>
-             <li className={`${style.slide2}`}>
-               <img src={image2} alt="food2" />
-             </li>
-             <li className={`${style.slide3}`}>
-               <img src={image3} alt="food3" />
-             </li>
-           </ul>
-         </div>
-         <div>
-           <ul>
-             {
-               <Recipes allRecipes={filteredRecipes()} currentPage={0} nextHandler={nextHandler} prevHandler={prevHandler}/>
-             }
-           </ul>
-         </div>
-       </div>
+      <div className={`${style.container}`}>
+        <ul className={`${style.slider}`}>
+          <li className={`${style.slide1}`}>
+            <img src={image1} alt="food1" />
+          </li>
+          <li className={`${style.slide2}`}>
+            <img src={image2} alt="food2" />
+          </li>
+          <li className={`${style.slide3}`}>
+            <img src={image3} alt="food3" />
+          </li>
+        </ul>
+      </div>
+      <div className={`${style.form}`}>
+        <button onClick={searchHandler}>Search</button>
+        <input
+          id='inputSearch'
+          type="search"
+          name="name"
+          placeholder='Banana, Pizza, Smoothie...' />
+      </div>
+      <div className={`${style.tempSelect}`}>
+        <select className={`${style.selector}`} defaultValue={"null"} name="diets" onChange={e => dietSelect(e)}>
+          <option value="null">All</option>
+          {allDiets?.map((diet) => {
+            return <option key={diet.id}>{diet.name}</option>
+          })}
+        </select>
+      </div>
+      <div className={`${style.contSwitch1}`}>
+          <p>Alphabetical order</p>
+          <label className={`${style.switch}`}>
+            <input type="checkbox" name="sort" className={`${style.switchInput}`} onClick={(e) => alphaOrder(e)} />
+            <div className={`${style.rail}`}>
+              <button className={`${style.button1}`} value={"up"} onClick={(e) => alphaOrder(e)}>▲</button>
+              <button className={`${style.button2}`} value={"down"} onClick={(e) => alphaOrder(e)}>▼</button>
+              <span className={`${style.circle}`}></span>
+            </div>
+            <span className={`${style.indicator}`}></span>
+          </label>
+        </div>
+        <div className={`${style.contSwitch2}`}>
+          <p>order by health Score</p>
+          <label className={`${style.switch}`}>
+            <input type="checkbox" name="sort" className={`${style.switchInput}`} onClick={(e) => healthOrder(e)} />
+            <div className={`${style.rail}`}>
+              <button className={`${style.button1}`} value={"up"} onClick={(e) => healthOrder(e)}>▲</button>
+              <button className={`${style.button2}`} value={"down"} onClick={(e) => healthOrder(e)}>▼</button>
+              <span className={`${style.circle}`}></span>
+            </div>
+            <span className={`${style.indicator}`}></span>
+          </label>
+        </div>
+
+      <div>
+        <ul>
+          {
+            <Recipes allRecipes={filteredRecipes()} currentPage={0} nextHandler={nextHandler} prevHandler={prevHandler} />
+          }
+        </ul>
+      </div>
+    </div>
   )
 }
 
 export default Home
-
-// export class Home extends Component {
-
-
-//   componentDidMount() {
-//     //this.props.getAllRecipes();
-//   }
-
-//   filteredRecipes(){
-
-//     return this.props.allRecipes;
-//   }
-
-//   nextHandler(){
-    
-
-//   }
-
-//   prevHandler(){
-    
-//   }
-
-//   render() {
-//     return (
-//       <div>
-//         <div className={`${style.container}`}>
-//           <ul className={`${style.slider}`}>
-//             <li className={`${style.slide1}`}>
-//               <img src={image1} alt="food1" />
-//             </li>
-//             <li className={`${style.slide2}`}>
-//               <img src={image2} alt="food2" />
-//             </li>
-//             <li className={`${style.slide3}`}>
-//               <img src={image3} alt="food3" />
-//             </li>
-//           </ul>
-//         </div>
-//         <div>
-//           <ul>
-//             {
-//               <Recipes allRecipes={this.filteredRecipes()} currentPage={0} nextHandler={this.nextHandler} prevHandler={this.prevHandler}/>
-//             }
-//           </ul>
-//         </div>
-//             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis doloremque facere ut. Tempore, eius fuga pariatur, tempora iste laboriosam cum ab maxime veniam est expedita doloribus impedit deserunt dolore?
-//             Odit ipsam delectus quaerat, eligendi beatae laboriosam distinctio quam deserunt quia illum? Repudiandae earum quasi voluptatem repellendus perferendis numquam excepturi? Pariatur hic aliquid iusto numquam placeat, consequuntur eius officia veniam!
-//             Ipsam, laboriosam tenetur accusantium temporibus dignissimos vel eaque ducimus esse dolorem? Totam, perferendis. Sapiente ad, cum neque aperiam ipsam accusantium non! Fugit incidunt ullam sunt similique dignissimos eveniet eius sed.
-//             Eaque ipsam similique veniam alias, voluptas ad fugit sequi ipsum laborum magnam vero quasi corrupti? Hic quia cupiditate aliquid beatae incidunt ipsa quidem, facilis quam fugit reprehenderit esse, blanditiis vel.
-//             Dolore iste nemo ex sit! Iusto saepe magni iure at itaque minima voluptate nobis quas quasi suscipit eaque atque sequi dolores, voluptatem ex quisquam quaerat amet minus doloribus earum. Tenetur!
-//             Ducimus optio, consequatur animi consequuntur quaerat et corporis, molestiae exercitationem adipisci nostrum pariatur explicabo excepturi ut asperiores tenetur neque saepe velit commodi atque! Commodi recusandae et debitis aut iusto obcaecati?
-//             Nesciunt voluptatibus quisquam, reiciendis, error magnam expedita deserunt sequi aperiam quas quis deleniti at vel animi facere sint odio, rem distinctio esse maiores provident dolores odit soluta quos doloremque? Ea.
-//             Beatae, perferendis. Blanditiis perferendis doloribus enim officiis voluptates aut, itaque rerum saepe, ullam quod consequuntur illum commodi autem labore incidunt. Enim natus, voluptatibus possimus illum at aliquid necessitatibus numquam dolorum!
-//             Excepturi illo corporis vitae omnis eius incidunt sed tenetur rem. Dolorum alias neque, asperiores cum voluptatem necessitatibus sunt ratione, velit hic mollitia deleniti ut consequatur blanditiis illo incidunt eos odio.
-//             Esse distinctio exercitationem numquam quos saepe, veniam, quasi aperiam quibusdam in itaque et vel incidunt totam aliquid alias soluta nulla eveniet aliquam rerum quidem? Eaque, animi explicabo! Ut, quos ex!</p>
-
-//       </div>
-//     )
-//   }
-// }
-
-// export const mapStateToProps = (state) => {
-//   return {
-//     allRecipes: state.food.allRecipes,
-//   }
-// }
-
-// export const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getAllRecipes: () => dispatch(getAllRecipes()),
-//   }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Home)

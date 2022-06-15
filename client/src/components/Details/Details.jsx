@@ -7,52 +7,55 @@ import { Link } from 'react-router-dom';
 
 export class Details extends Component {
 
-    componentDidMount(){
-        this.props.getRecipe(this.props.match.params.recipeName);
-    }
+  componentDidMount() {
+    this.props.getRecipe(this.props.match.params.recipeName);
+  }
 
-    showHtml(){
-        return (<div className={`${style.page}`}>
-            <div className={`${style.contenedor}`}>
-                <img className={`${style.image}`} src={this.props.recipe[0]?.image?this.props.recipe[0].image:"Loading..."} alt={this.props.recipe[0]?.title} />
-                <div className={`${style.information}`}>
-                <h1>{this.props.recipe[0]?.title}</h1>
-                    <h3><h1>Diets:</h1> {this.props.recipe[0]?.diets?this.props.recipe[0].diets:"Loading..."}</h3>
-                    <h3><h1>Health Score:</h1> {this.props.recipe[0]?.healthScore?this.props.recipe[0].healthScore:"Loading..."}</h3>
-                    <h3><h1>Ready In Minutes:</h1> {this.props.recipe[0]?.readyInMinutes?this.props.recipe[0].readyInMinutes:"N/D"}</h3>
-                    <h3><h1>servings:</h1> {this.props.recipe[0]?.servings?this.props.recipe[0].servings:"N/D"}</h3>
-                </div>
-                <div className={`${style.summary}`}>
-                <h3><h1>Summary:</h1> {this.props.recipe[0]?.summary?this.props.recipe[0].summary:"Loading..."}</h3>
-                </div>
-            </div>
-            <Link to="/home"><button className={`${style.backButton}`}>Back</button></Link>
-        </div>)
-   }
+  showHtml() {
+    return (<div className={`${style.page}`}>
+      <Link to="/home"><button className={`${style.backButton}`}>Back</button></Link>
+      <div className={`${style.contenedor}`}>
+        <img className={`${style.image}`} src={this.props.recipe[0]?.image ? this.props.recipe[0].image : "Loading..."} alt={this.props.recipe[0]?.title} />
+        <div className={`${style.information}`}>
+          <h1>{this.props.recipe[0]?.title}</h1>
+          <h3><h1>Diets:</h1> {this.props.recipe[0]?.diets ? this.props.recipe[0].diets : "Loading..."}</h3>
+          <h3><h1>Health Score:</h1> {this.props.recipe[0]?.healthScore ? this.props.recipe[0].healthScore : "Loading..."}</h3>
+          <h3><h1>Ready In Minutes:</h1> {this.props.recipe[0]?.readyInMinutes ? this.props.recipe[0].readyInMinutes : "N/D"}</h3>
+          <h3><h1>servings:</h1> {this.props.recipe[0]?.servings ? this.props.recipe[0].servings : "N/D"}</h3>
+          <h3><h1>dish Type:</h1> {this.props.recipe[0]?.dishTypes ? this.props.recipe[0]?.dishTypes : "N/D"}</h3>
+        </div>
+        <div className={`${style.summary}`}>
+          <h3><h1>Summary:</h1> {this.props.recipe[0]?.summary ? this.props.recipe[0].summary : "Loading..."}</h3>
+          <h3><h1>Steps:</h1>{this.props.recipe[0]?.analyzedInstructions[0].steps?.map((s) => {return (<div><h4>Paso numero: {s.number}</h4><h5>{s.step}</h5></div>)})}</h3>
+        </div>
+      </div>
+
+    </div>)
+  }
 
   render() {
     return (
-        <div>
+      <div>
         {console.log(this.props.recipe[0])}
         {this.props.loading === true ? "Loading..." : this.showHtml()}
-    </div>
+      </div>
     )
   }
 }
 
 export const mapStateToProps = (state) => {
-    return {
-      allDiets: state.food.allDiets,
-      recipe: state.food.recipe,
-      loading: state.food.loading
-    }
-  };
-  
-  export const mapDispatchToProps = (dispatch) => {
-    return {
-      getAllDiets: () => dispatch(getAllDiets()),
-      getRecipe: (name) => dispatch(getRecipe(name))
-    }
-  };
-  
-  export default connect(mapStateToProps, mapDispatchToProps)(Details)
+  return {
+    allDiets: state.food.allDiets,
+    recipe: state.food.recipe,
+    loading: state.food.loading
+  }
+};
+
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllDiets: () => dispatch(getAllDiets()),
+    getRecipe: (name) => dispatch(getRecipe(name))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Details)

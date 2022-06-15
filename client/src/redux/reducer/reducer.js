@@ -67,7 +67,20 @@ export const getAllDiets = () => async (dispatch) => {
     return axios.get(`http://localhost:3001/diet/`)
         .then((response) => response.data)
         .then((data) =>{
+            console.log(data)
             dispatch(setAllDiets(data))
         })
         .catch((error)=> console.log(error))
+}
+
+export const postRecipe = (data) =>{
+    try {
+        return axios({
+            method: "post",
+            url: "http://localhost:3001/recipes",
+            data: data
+        })
+    } catch (error) {
+        return error
+    }
 }

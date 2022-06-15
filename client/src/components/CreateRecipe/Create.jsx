@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import style from "./Create.module.css"
 import { connect } from "react-redux";
-import { getAllDiets } from "../../redux/reducer/reducer.js"
+import { getAllDiets, postRecipe } from "../../redux/reducer/reducer.js"
 
 export class Create extends Component {
 
@@ -98,6 +98,22 @@ export class Create extends Component {
         errors
       });
       this.validarForm(this.state.errors)
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    let { title, summary, health_score, stepByStep, image, RecipeDiet } = this.state;
+    RecipeDiet = RecipeDiet.join(", ")
+    const newRecipe = {
+      title, summary, health_score, stepByStep, image, RecipeDiet
+    }
+    postRecipe(newRecipe)
+    .then(()=>{
+      let form = document.getElementById("form")
+      form.reset()
+      window.alert("successfully created Recipe")
+    })
+    .catch((error)=> window.alert("Error creating the dog", error))
   }
 
 
