@@ -6,8 +6,8 @@ module.exports = (sequelize) => {
   sequelize.define('recipe', {
     id:{
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      unique: true,
+      primaryKey:true,
+      autoIncrement:true,
     },
     title: {
       type: DataTypes.STRING,
@@ -17,15 +17,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    health_score: {
+    healthScore: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    stepByStep:{
-      type: DataTypes.TEXT,
+    analyzedInstructions:{
+      type: DataTypes.ARRAY(DataTypes.JSONB),
+      defaultValue: [],
       allowNull: true,
     },
     RecipeDiet:{
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    image:{
       type: DataTypes.TEXT,
       allowNull: true
     }

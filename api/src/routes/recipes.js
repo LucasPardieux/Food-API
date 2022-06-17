@@ -38,13 +38,11 @@ const {API_KEY} = process.env;
     })
 
     router.post("/", async (req,res,next)=>{
-        const {title, summary, health_score, recipe, diets} = req.body;
-        const id = await models.getLastId()+1;
+        const {title, summary, healthScore, analyzedInstructions, image, RecipeDiet} = req.body;
         try {
             const newRecipe = await Recipe.create({
-                id:id, title:title, summary:summary, health_score:health_score, stepByStep:recipe, RecipeDiet:diets
+            title:title, summary:summary, healthScore:healthScore, analyzedInstructions:analyzedInstructions, RecipeDiet:RecipeDiet, image:image
             })
-            console.log(newRecipe)
             res.status(201).send(newRecipe)
         } catch (error) {
             console.log(error)

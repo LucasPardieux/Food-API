@@ -6,7 +6,7 @@ router.get("/", async(req,res,next)=>{
 
     try {
         const diet = await models.fillDB();
-        res.status(200).send(diet.length>0?diet:"No hay temperamentos");
+        res.status(200).send(diet.length>0?diet:"No hay Dietas");
     } catch (error) {
         res.sendStatus(400);
     }
