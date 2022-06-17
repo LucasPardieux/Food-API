@@ -1,12 +1,12 @@
 
 .contenedor{
-    background-color: rgb(190, 190, 190);
+    background-color: rgb(0, 0, 0);
     min-width: 330px;
     min-height: 200px;
     max-width: 300px;
     max-height: 500px;
     padding-bottom: 1px;
-    border: 2px solid rgb(163, 163, 163,);
+    border: 2px solid rgb(255, 200, 0);
     border-radius: 15px;
     box-shadow: 7px 5px 5px black;
     backdrop-filter: blur(5px);
@@ -29,7 +29,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    background: linear-gradient(transparent 70%, rgb(190, 190, 190))
+    background: linear-gradient(transparent 50%, rgb(0, 0, 0))
 }
 
 .image img{
@@ -59,6 +59,7 @@
     margin: 10px;
     margin-bottom: 15px;
     left: 20px;
+
 }
 .information{
     margin: 10px;

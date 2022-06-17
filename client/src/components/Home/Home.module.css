@@ -1,17 +1,17 @@
 body {
-    background-color: white;
+    background-image: url("https://wallpaperaccess.com/full/532742.jpg");
     background-repeat: no-repeat;
-    background-size: 100%;
-    background-attachment: fixed;
-    background-position-y: bottom;
-
-}
+    background-size: cover;
+    background-position: -500px;
+} 
 
 .container {
     width: 100%;
     position: relative;
     bottom: 180px;
     margin: 0;
+    box-shadow: 0 8px 32px 0 rgba(232, 171, 17, 0.423);
+
 }
 
 ul,
@@ -24,7 +24,7 @@ li {
 .slider {
     position: relative;
     width: 1580px;
-    height: 850px;
+    height: 550px;
 }
 
 .slider li {
@@ -110,8 +110,8 @@ li {
 .tempSelect {
     width: max-content;
     position: absolute;
-    left: 40%;
-    top: 60%;
+    left: 42%;
+    bottom: 40%;
 }
 
 .selector {
@@ -121,6 +121,9 @@ li {
     font-size: x-large;
     text-align: center;
     box-shadow: 5px 5px 10px 1px #000;
+    border: 2px solid #f0c61f;
+    background-image: linear-gradient(135deg, #5f5f5f 0%, #000000 100%);
+    color: #f0c61f;
 }
 
 .filters {
@@ -140,7 +143,7 @@ li {
     width: 80px;
     position: relative;
     left: 70%;
-    top: 30%;
+    bottom: 80px;
 }
 
 .contSwitch1 p {
@@ -148,16 +151,16 @@ li {
     font-size: large;
     margin: 0;
     font-weight: 700;
-    color:rgb(0, 255, 255);
-    -webkit-text-stroke: 1px black;
+    color:rgb(255, 200, 0);
+    -webkit-text-stroke: 0.8px black;
 }
 
 .contSwitch2 {
     height: max-content;
     width: 80px;
     position: relative;
-    top: 3%;
-    left: 20%
+    left: 23%;
+    bottom: 160px;
 }
 
 .contSwitch2 p {
@@ -165,14 +168,13 @@ li {
     font-size: large;
     margin: 0;
     font-weight: 700;
-    color:rgb(0, 255, 255);
-    -webkit-text-stroke: 1px black;
+    color:rgb(255, 200, 0);
+    -webkit-text-stroke: 0.8px black;
 }
 
 .switch {
     height: 40px;
-    background-image: linear-gradient(135deg, #00ffff 0%, #667eea 100%);
-    /* linear-gradient(135deg, #667eea 0%, #764ba2 100%) */
+    background-image: linear-gradient(135deg, #5f5f5f 0%, #000000 100%);
     padding: 0 0.5rem;
     border-radius: 0.8rem;
     display: flex;
@@ -201,7 +203,7 @@ li {
     display: block;
     width: 16px;
     height: 16px;
-    background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    background-image: linear-gradient(to right, #cdc8a0 0%, #cac086 0%, #dac365 0%, #cab344 33%, #eac139 66%, #f0c61f 100%);
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -226,7 +228,7 @@ li {
 }
 
 .switch .switchInput:checked~.indicator {
-    background-color: rgb(102, 255, 0);
+    background-color: rgb(255, 213, 0);
 }
 
 .button1 {
@@ -235,7 +237,8 @@ li {
     cursor: pointer;
     border: 0;
     border-radius: 0.5rem;
-    background-image: linear-gradient(135deg, #00ffff 0%, #667eea 100%);
+    background-image: linear-gradient(135deg, #5f5f5f 0%, #000000 100%);
+    color: #f0c61f;
     box-shadow: 5px 5px 10px 1px #000;
     position: absolute;
     transition: 0.4s;
@@ -249,7 +252,8 @@ li {
     cursor: pointer;
     border: 0;
     border-radius: 0.5rem;
-    background-image: linear-gradient(135deg, #00ffff 0%, #667eea 100%);
+    background-image: linear-gradient(135deg, #5f5f5f 0%, #000000 100%);
+    color: #f0c61f;
     box-shadow: 5px 5px 10px 1px #000;
     position: absolute;
     transition: 0.4s;
@@ -257,15 +261,73 @@ li {
 }
 
 .switch .switchInput:checked~.rail .button1 {
-    transform: translateX(80px);
+    transform: translate(-20px, 50px);
     height: 20px;
     width: 35px;
     opacity: 1;
+    -webkit-transform: translate(-20px, 50px);
+    -moz-transform: translate(-20px, 50px);
+    -ms-transform: translate(-20px, 50px);
+    -o-transform: translate(-20px, 50px);
 }
 
 .switch .switchInput:checked~.rail .button2 {
-    transform: translateX(130px);
+    transform: translate(55px, 50px);
     height: 20px;
     width: 35px;
     opacity: 1;
+    -webkit-transform: translate(55px, 50px);
+    -moz-transform: translate(55px, 50px);
+    -ms-transform: translate(55px, 50px);
+    -o-transform: translate(55px, 50px);
+}
+
+.search{
+    position:relative;
+    height: 50px;
+    width: 400px;
+    left: 31%;
+    border: 2px solid #f0c61f;
+    background-image: linear-gradient(135deg, #5f5f5f 0%, #151515 100%);
+    color: #f0c61f;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    text-align: center;
+    font-size: larger;
+}
+
+.buttonSearch{
+    position: relative;
+    left: 47%;
+    top: 60px;
+    width: 90px;
+    height: 40px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    border: 2px solid #f0c61f;
+    background-image: linear-gradient(135deg, #5f5f5f 0%, #000000 100%);
+    color: #f0c61f;
+    cursor: pointer;
+}
+
+.buttonSearch:hover{
+    background-image: linear-gradient(135deg, #ffdf93 0%, #ffbd09 100%);
+    color: black;
+    border: 2px solid black;
+}
+
+.filters{
+    position: relative;
+    bottom: 120px;
+}
+
+.allRecipes{
+    position: relative;
+    bottom: 180px;
 }

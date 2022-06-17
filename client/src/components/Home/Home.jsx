@@ -80,7 +80,8 @@ const Home = () => {
 
 
   const nextHandler = () => {
-    if (dataFromApi.filter(recipe => recipe.title.includes(search)).length > currentPage + 8) {
+    console.log(dataFromApi);
+    if (dataFromApi.filter(recipe => recipe.title?.includes(search)).length > currentPage + 8) {
       pageCount = pageCount + 1;
       setCurrentPage(currentPage + ITEMS_PER_PAGE)
     } else {
@@ -185,6 +186,7 @@ const Home = () => {
 
   return (
     <div>
+      {window.document.title = 'L´assiette'}
       <div className={`${style.container}`}>
         <ul className={`${style.slider}`}>
           <li className={`${style.slide1}`}>
@@ -198,9 +200,11 @@ const Home = () => {
           </li>
         </ul>
       </div>
+    <div className={`${style.filters}`}>
       <div className={`${style.form}`}>
-        <button onClick={searchHandler}>Search</button>
+        <button className={`${style.buttonSearch}`} onClick={searchHandler}>Search</button>
         <input
+          className={`${style.search}`}
           id='inputSearch'
           type="search"
           name="name"
@@ -227,7 +231,7 @@ const Home = () => {
           </label>
         </div>
         <div className={`${style.contSwitch2}`}>
-          <p>order by health Score</p>
+          <p>health Score</p>
           <label className={`${style.switch}`}>
             <input type="checkbox" name="sort" className={`${style.switchInput}`} onClick={(e) => healthOrder(e)} />
             <div className={`${style.rail}`}>
@@ -238,8 +242,10 @@ const Home = () => {
             <span className={`${style.indicator}`}></span>
           </label>
         </div>
+                
+      </div>
 
-      <div>
+      <div className={`${style.allRecipes}`}>
         <ul>
           {
             <Recipes allRecipes={filteredRecipes()} currentPage={0} nextHandler={nextHandler} prevHandler={prevHandler} />

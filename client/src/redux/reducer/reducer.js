@@ -53,11 +53,12 @@ export const getAllRecipes = () => async (dispatch) =>{
 }
 
 export const getRecipe = (name) => async (dispatch) =>{
+        dispatch(setLoading(true));
     return axios.get(`http://localhost:3001/recipes?name=${name}`)
         .then((response) => response.data)
         .then((data) =>{
-            console.log(data)
             dispatch(setRecipe(data))
+            dispatch(setLoading(false))
         })
         .catch((error)=> console.log(error))
 }
@@ -67,7 +68,6 @@ export const getAllDiets = () => async (dispatch) => {
     return axios.get(`http://localhost:3001/diet/`)
         .then((response) => response.data)
         .then((data) =>{
-            console.log(data)
             dispatch(setAllDiets(data))
         })
         .catch((error)=> console.log(error))

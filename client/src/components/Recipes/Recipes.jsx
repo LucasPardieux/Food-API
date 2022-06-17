@@ -8,7 +8,7 @@ const Recipes = (props) => {
     const eachRecipe = props.allRecipes?.map((r) => {
         return (
             <div className={`${style.eachRecipe}`}>
-                <Link to={`/details/${r.title}`}>
+                <Link to={`/details/${r.title}`} className={`${style.linkCard}`}>
                 <li >
                     <Card
                         key={r.id}

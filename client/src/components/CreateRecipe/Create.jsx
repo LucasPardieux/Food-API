@@ -10,15 +10,15 @@ export class Create extends Component {
     this.state = {
       title: "",
       summary: "",
-      health_score: 0,
-      stepByStep: "",
+      healthScore: 0,
+      analyzedInstructions: [{number:0, step:""}],
       image: "",
       RecipeDiet: [],
       errors: {
         title: "",
         summary: "",
-        health_score: "",
-        stepByStep: "",
+        healthScore: "",
+        analyzedInstructions: "",
         image: "",
       },
       disabled: true
@@ -44,11 +44,16 @@ export class Create extends Component {
     }
   }
 
+  firstWordUpperCase(word) {
+    return word[0].toUpperCase() + word.slice(1);
+  }
+
   handleChange(e) {
     const value = e.target.value;
     const name = e.target.name;
     const check = e.target.checked;
     let errors = this.state.errors;
+     
 
     if(name === 'RecipeDiet' && check === false) {
       this.setState((state) => {
@@ -59,6 +64,7 @@ export class Create extends Component {
       })
       return;
     }
+
 
     if(name === 'RecipeDiet') {
       this.setState((state) => {
@@ -78,12 +84,8 @@ export class Create extends Component {
         let summaryPattern = /[a-zA-Z]{2,500}/
         errors.summary = summaryPattern.test(value) ? '' : 'Summary must have at least 2 characters and not contain any special characters or numbers';
         break;
-      case 'health_score':
-        errors.health_score = value < 0 || value > 100 ? 'The score must be in a range between 0 and 100' : '';
-        break;
-      case 'stepByStep':
-        let stepByStepPattern = /[a-zA-Z]{2,500}/
-        errors.stepByStep = stepByStepPattern.test(value) ? '' : 'Step by step must have at least 2 characters and not contain any special characters or numbers';
+      case 'healthScore':
+        errors.healthScore = value < 0 || value > 100 ? 'The score must be in a range between 0 and 100' : '';
         break;
       case 'image':
         let urlPattern = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
@@ -102,10 +104,11 @@ export class Create extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let { title, summary, health_score, stepByStep, image, RecipeDiet } = this.state;
-    RecipeDiet = RecipeDiet.join(", ")
+    let { title, summary, healthScore, analyzedInstructions, image, RecipeDiet } = this.state;
+    RecipeDiet = RecipeDiet.join(", ");
+    title = this.firstWordUpperCase(title);
     const newRecipe = {
-      title, summary, health_score, stepByStep, image, RecipeDiet
+      title, summary, healthScore, analyzedInstructions, image, RecipeDiet
     }
     postRecipe(newRecipe)
     .then(()=>{
@@ -114,6 +117,25 @@ export class Create extends Component {
       window.alert("successfully created Recipe")
     })
     .catch((error)=> window.alert("Error creating the dog", error))
+  }
+
+  handleSteps(e){
+    const name = e.target.name;
+    const input = document.getElementById("buttonStep").value;
+    let lastStep = 0;
+    if(name === 'analyzedInstructions'){
+      this.setState((state)=>{
+        for (let x in state.analyzedInstructions){
+          lastStep = state.analyzedInstructions[x].number;
+        }
+        const newStep = {number:lastStep+1, step: input}
+        
+        //return state.analyzedInstructions[0].steps.push(newStep)
+        return {[name]: [...state.analyzedInstructions, newStep]}
+      })
+      console.log(this.state.analyzedInstructions);
+      return;
+    }
   }
 
 
@@ -132,14 +154,20 @@ export class Create extends Component {
                 <input name="summary" type="text" onChange={this.handleChange} />
                 {!this.state.errors.summary ? null : <div className={`${style.error}`}>{this.state.errors.summary}</div>}
                 <h5>Health score:</h5>
-                <input name="health_score" type="number" onChange={this.handleChange} />
-                {!this.state.errors.health_score ? null : <div className={`${style.error}`}>{this.state.errors.health_score}</div>}
-                <h5>Step by step:</h5>
-                <input name="stepByStep" type="text" min={6} max={19} onChange={this.handleChange} />
-                {!this.state.errors.stepByStep ? null : <div className={`${style.error}`}>{this.state.errors.stepByStep}</div>}
+                <input name="healthScore" type="number" onChange={this.handleChange} />
+                {!this.state.errors.healthScore ? null : <div className={`${style.error}`}>{this.state.errors.healthScore}</div>}
                 <h5>Image url:*</h5>
                 <input name="image" type="text" onChange={this.handleChange} />
                 {!this.state.errors.image ? null : <div className={`${style.error}`}>{this.state.errors.image}</div>}
+                <h5>Step by step:</h5>
+                <input id='buttonStep' name="analyzedInstructions" type="text" min={6} max={19}/>
+                {!this.state.errors.analyzedInstructions ? null : <div className={`${style.error}`}>{this.state.errors.analyzedInstructions}</div>}
+                <button name="analyzedInstructions" onClick={(e) => this.handleSteps(e)}>Add step</button>
+              </div>
+              <div>
+                {this.state.analyzedInstructions?.map((r)=>{
+                  return (<div key={r.number}>{r.step}</div>)
+                })}
               </div>
               <h5>Diet type:*</h5>
               <div className={`${style.checkCont}`}>

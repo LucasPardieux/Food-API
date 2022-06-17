@@ -1,0 +1,129 @@
+
+/* body{
+    background-image: url("https://wallpaperaccess.com/full/532742.jpg");
+    background-size: 700px;
+    background-position: 1050px;
+    background-color: black;
+    background-attachment: local;
+} */
+
+.contenedor{
+    position: relative;
+    height: 700px;
+    width: 1100px;
+    left: 13%;
+    top: 10px;
+    border: 4px solid rgb(216, 151, 0);
+    transition: 0.5s;
+    opacity: 1;
+}
+.information{
+    position: absolute;
+    bottom: 0px;
+    color: white;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+    background-image: none;
+}
+
+.information h1{
+    position: relative;
+    top: 55%;
+    opacity: 0;
+    text-decoration: underline 3px rgb(197, 154, 0);
+    
+}
+
+.information h3{
+    position: relative;
+    display: flex;
+    top: 55%;
+    left: 3%;
+    opacity: 0;
+}
+
+.information h3 h1{
+    margin: 0;
+    position: relative;
+    font-size: inherit;
+    color: rgb(197, 154, 0);
+    left: 0;
+    bottom: 5px;
+    text-decoration: none;
+
+}
+
+.image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 700px;
+    width: 1100px;
+    left: 0%;
+}
+
+.backButton{
+    position: absolute;
+    top: 890px;
+    left: 47%;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.252);
+    width: 70px;
+    color: white;
+}
+
+.information:hover{
+    transition: background-image 1s;
+    background-image: linear-gradient(transparent, rgb(0, 0, 0) 90%);
+}
+
+.information:hover h1{
+    transition: opacity 0.5s;
+    opacity: 1;
+}
+
+.information:hover h3{
+    transition: opacity 1s;
+    opacity: 1;
+}
+
+.summaryCont{
+    color: white;
+    background-color: black;
+    position: relative;
+    width: 100%;
+    height: max-content;
+    top: 50px;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    
+}
+
+.summary{
+    position: relative;
+    left: -10px;
+    width: 100%;
+    margin-bottom: 15px;
+    background-image: url("https://i.pinimg.com/originals/4c/a2/85/4ca285a7d068b2ad6e2ec127eecbdaf4.png");
+    padding: 10px;
+    
+}
+
+.steps{
+    position: relative;
+    left: 4%;
+    background-image: url("https://media.istockphoto.com/photos/black-gold-background-gradient-texture-soft-golden-with-light-gray-picture-id1315819475?b=1&k=20&m=1315819475&s=170667a&w=0&h=l-RnVw1QLYq_X9-hukA-5xFfFK00-Tx0oqaOGX3C5s0=");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 3px solid rgb(181, 145, 0);
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 90%;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
