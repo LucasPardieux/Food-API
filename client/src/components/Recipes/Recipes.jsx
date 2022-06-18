@@ -2,6 +2,7 @@ import React from 'react'
 import Card from '../Card/Card';
 import style from "./Recipes.module.css"
 import { Link } from 'react-router-dom';
+import img from "../../image/3782014.png"
 
 const Recipes = (props) => {
 
@@ -9,7 +10,7 @@ const Recipes = (props) => {
         return (
             <div className={`${style.eachRecipe}`}>
                 <Link to={`/details/${r.title}`} className={`${style.linkCard}`}>
-                <li >
+                <li key={r.id}>
                     <Card
                         key={r.id}
                         title={r.title}
@@ -31,7 +32,7 @@ const Recipes = (props) => {
                 <button onClick={props.nextHandler}>Next</button>
             </div>
             <ul className={`${style.ulRecipe}`}>
-                {eachRecipe}
+                {props.allRecipes.length!=0?eachRecipe:<img src={img} alt="no food found"/>}
             </ul>
         </div>
     )

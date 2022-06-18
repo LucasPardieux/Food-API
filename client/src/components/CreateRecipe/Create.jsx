@@ -128,9 +128,7 @@ export class Create extends Component {
         for (let x in state.analyzedInstructions){
           lastStep = state.analyzedInstructions[x].number;
         }
-        const newStep = {number:lastStep+1, step: input}
-        
-        //return state.analyzedInstructions[0].steps.push(newStep)
+        const newStep = {number:lastStep+1, step: input}        
         return {[name]: [...state.analyzedInstructions, newStep]}
       })
       console.log(this.state.analyzedInstructions);
@@ -160,13 +158,13 @@ export class Create extends Component {
                 <input name="image" type="text" onChange={this.handleChange} />
                 {!this.state.errors.image ? null : <div className={`${style.error}`}>{this.state.errors.image}</div>}
                 <h5>Step by step:</h5>
-                <input id='buttonStep' name="analyzedInstructions" type="text" min={6} max={19}/>
+                <textarea className={`${style.stepByStep}`} id='buttonStep' name="analyzedInstructions" type="text" min={6} max={19}/>
                 {!this.state.errors.analyzedInstructions ? null : <div className={`${style.error}`}>{this.state.errors.analyzedInstructions}</div>}
-                <button name="analyzedInstructions" onClick={(e) => this.handleSteps(e)}>Add step</button>
+                <button className={`${style.stepButton}`} name="analyzedInstructions" onClick={(e) => this.handleSteps(e)}>Add step</button>
               </div>
-              <div>
+              <div className={`${style.stepsCont}`}>
                 {this.state.analyzedInstructions?.map((r)=>{
-                  return (<div key={r.number}>{r.step}</div>)
+                  return (<div className={`${style.steps}`} key={r.number}><p>{r.step}</p></div>)
                 })}
               </div>
               <h5>Diet type:*</h5>

@@ -2,6 +2,11 @@ import React from 'react'
 import style from "./Card.module.css"
 
 const Card = ({ title, healthScore, servings, image, diets }) => {
+
+    const makeDiets = (diets) => {
+        return diets.join(" / ")
+    }
+
     return (
         <div className={`${style.contenedor}`}>
             <div className={`${style.image}`}>
@@ -15,7 +20,7 @@ const Card = ({ title, healthScore, servings, image, diets }) => {
                     <h4 className={`${style.subTitle}`}>Servings: </h4>
                     <p>{servings}</p>
                     <h4 className={`${style.subTitle}`}>Diets:</h4>
-                    <p>{diets}</p>
+                    <p>{makeDiets(diets)}</p>
                 </div>
             </div>
         </div>

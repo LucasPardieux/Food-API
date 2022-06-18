@@ -68,7 +68,7 @@ const Home = () => {
       if (r.hasOwnProperty("diets")) {
         return r.diets?.includes(diet)
       } else {
-        return r.diets?.includes(diet)
+        return r.RecipeDiet?.includes(diet)
       }
     })
     satDataFromApi(filteredRecipes)
