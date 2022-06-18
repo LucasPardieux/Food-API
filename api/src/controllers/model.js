@@ -32,7 +32,7 @@ module.exports = {
         if (diets.length !== 0) {
             return diets;
         } else {
-            const newDiet = ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian", "Vegan", "Pescetarian", "Paleo", "Primal", "Low FODMAP", "Whole30"]
+            const newDiet = ["gluten free", "ketogenic", "vegetarian", "lacto-vegetarian", "lacto ovo vegetarian", "vegan", "pescetarian", "paleo", "primal", "low FODMAP", "whole 30"]
             try {
                 for (let x in newDiet) {
                     await Diet.create({
@@ -62,10 +62,10 @@ module.exports = {
         let arrayAux = [];
         let rpta;
         try {
-            //const info = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+            const info = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
             const infoDB = await Recipe.findAll();
-            //rpta = info.data.results;
-            let arrayConcat = infoDB//rpta.concat(infoDB)
+            rpta = info.data.results;
+            let arrayConcat = rpta.concat(infoDB)
             if (name !== undefined) {
                 arrayAux = arrayConcat.filter((recipe) => recipe.title.includes(name));
                 if (arrayAux.length === 0) throw new Error({ error: "The requested recipe was not found" });
