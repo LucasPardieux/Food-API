@@ -1,0 +1,62 @@
+body{
+    background-color:white;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');
+
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+.background{
+    position: relative;
+    height: 120%;
+    width: 120%;
+    overflow: auto; /*Firefox*/
+    overflow: overlay;
+    bottom: 200px;
+    right: 100px;
+}
+
+.image{
+    position: absolute;
+    top: 450px;
+    height: 250px;
+    width: 100%;
+    object-position: 0 0 50px;
+    object-fit: cover;
+}
+
+
+.page h1{
+    position: absolute;
+    top: 200px;
+    left: 31%;
+    color: white;
+    font-size: 65px;
+    text-align: center;
+    font-family: 'Dongle', sans-serif;
+}
+
+.page button{
+    position: absolute;
+    width: 180px;
+    height: 50px;
+    top: 350px;
+    left: 44%;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.194);
+    border: 2px solid goldenrod;
+    color: goldenrod;
+    border-radius: 15px;
+    font-size: 40px;
+    font-family: 'Dongle', sans-serif;
+}
+
+.page button:hover{
+    background-color: black;
+    color: goldenrod;
+}

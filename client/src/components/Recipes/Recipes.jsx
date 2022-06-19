@@ -17,7 +17,8 @@ const Recipes = (props) => {
                         healthScore={r.healthScore}
                         servings={r.servings}
                         image={r.image}
-                        diets={r.diets}
+                        diets={r.diets?r.diets:null}
+                        RecipeDiet={r.RecipeDiet?r.RecipeDiet:null}
                     />
                 </li>
                 </Link>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import style from "./Create.module.css"
 import { connect } from "react-redux";
-import { getAllDiets, postRecipe } from "../../redux/reducer/reducer.js"
+import { getAllDiets, getAllRecipes, postRecipe } from "../../redux/reducer/reducer.js"
 
 export class Create extends Component {
 
@@ -113,7 +113,8 @@ export class Create extends Component {
     postRecipe(newRecipe)
     .then(()=>{
       let form = document.getElementById("form")
-      form.reset()
+      form.reset();
+      this.props.getAllRecipes();
       window.alert("successfully created Recipe")
     })
     .catch((error)=> window.alert("Error creating the dog", error))
@@ -131,7 +132,6 @@ export class Create extends Component {
         const newStep = {number:lastStep+1, step: input}        
         return {[name]: [...state.analyzedInstructions, newStep]}
       })
-      console.log(this.state.analyzedInstructions);
       return;
     }
   }
@@ -198,7 +198,8 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    getAllDiets: () => dispatch(getAllDiets())
+    getAllDiets: () => dispatch(getAllDiets()),
+    getAllRecipes: () => dispatch(getAllRecipes())
   }
 };
 

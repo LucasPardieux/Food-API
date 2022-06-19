@@ -80,7 +80,6 @@ const Home = () => {
 
 
   const nextHandler = () => {
-    console.log(dataFromApi);
     if (dataFromApi.filter(recipe => recipe.title?.includes(search)).length > currentPage + 8) {
       pageCount = pageCount + 1;
       setCurrentPage(currentPage + ITEMS_PER_PAGE)
