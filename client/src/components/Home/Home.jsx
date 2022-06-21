@@ -17,7 +17,7 @@ const Home = () => {
   const allDiets = useSelector(state => state.food.allDiets);
 
   const dispatch = useDispatch();
-  const ITEMS_PER_PAGE = 8;
+  const ITEMS_PER_PAGE = 9;
   let pageCount = 0;
 
   const updateState = () => {

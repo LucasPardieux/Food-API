@@ -9,6 +9,7 @@ import Nav from './components/Nav/Nav.jsx'
 import Create from './components/CreateRecipe/Create.jsx';
 import Details from './components/Details/Details';
 import Landing from './components/Landing/Landing';
+import About from './components/About/About';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Route path='/home' component={Home}/>
       <Route path='/details/:recipeName' component={Details}/>
       <Route path='/createRecipe' component={Create}/>
+      <Route path='/about' component={About}/>
     </BrowserRouter>
   );
 }

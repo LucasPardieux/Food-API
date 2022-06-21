@@ -44,9 +44,9 @@
 }
 
 .prevNext button:hover{
-    background: linear-gradient(135deg, #00ffff 20%, #667eea 80%);
+    background: linear-gradient(135deg, #ffdd00 20%, #7c6b00 80%);
     color: black;
-    border: 3px solid rgb(0, 195, 221);
+    border: 3px solid rgb(0, 0, 0);
 }
 
 .prevNext button:active{

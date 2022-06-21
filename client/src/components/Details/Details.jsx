@@ -32,7 +32,7 @@ export class Details extends Component {
           <h3>{`${this.props.recipe[0]?.summary}` ? `${this.props.recipe[0]?.summary}` : "Loading..."}</h3>
         </div>
         <div className={`${style.steps}`}>
-        <h3><h1>Steps:</h1>{this.props.recipe[0]?.analyzedInstructions[0].steps?.map((s) => { return (<div><h4>Paso numero: {s.number}</h4><h5>{s.step}</h5></div>) })}</h3>
+        <h3><h1>Steps:</h1>{this.props.recipe[0]?.analyzedInstructions[0]?.steps?.map((s) => { return (<div><h4>Paso numero: {s.number}</h4><h5>{s.step}</h5></div>) })}</h3>
         <h3>{this.props.recipe[0]?.analyzedInstructions?.map((s) => {
           return s.number === 0 ? null : (<div><h4>Paso numero: {s.number}</h4><h5>{s.step}</h5></div>)
         })}</h3>

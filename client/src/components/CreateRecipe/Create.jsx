@@ -105,7 +105,7 @@ export class Create extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let { title, summary, healthScore, analyzedInstructions, image, RecipeDiet } = this.state;
-    RecipeDiet = RecipeDiet.join(", ");
+    RecipeDiet = RecipeDiet.join(" / ");
     title = this.firstWordUpperCase(title);
     const newRecipe = {
       title, summary, healthScore, analyzedInstructions, image, RecipeDiet
