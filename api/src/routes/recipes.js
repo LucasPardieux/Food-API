@@ -45,7 +45,7 @@ const {API_KEY} = process.env;
             })
             res.status(201).send(newRecipe)
         } catch (error) {
-            console.log(error)
+            res.status(400).send({error:"Recipe was not created."})
         }
     })
 
