@@ -143,6 +143,12 @@ body{
     -o-border-radius: 15px;
 }
 
+.stepButton:hover{
+    background-image: linear-gradient(135deg, #ffb300 0%, #946800 100%);
+    color: black;
+    border: 1px solid black;
+}
+
 .stepsCont{
     position: relative;
     left: 30%;
