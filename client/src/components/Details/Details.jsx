@@ -15,6 +15,7 @@ export class Details extends Component {
   showHtml() {
     return (<div className={`${style.page}`}>
       <div className={`${style.contenedor}`}>
+        {console.log(this.props.recipe[0])}
         {/* <img className={`${style.imageBackground}`} src={img} alt="background" /> */}
         <img className={`${style.image}`} src={this.props.recipe[0]?.image ? this.props.recipe[0].image : "Loading..."} alt={this.props.recipe[0]?.title} />
         <div className={`${style.information}`}>

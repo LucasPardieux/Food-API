@@ -57,10 +57,12 @@ export class Create extends Component {
 
     if(name === 'RecipeDiet' && check === false) {
       this.setState((state) => {
-        let newArr = state.RecipeDiet
+        let newArr = state.RecipeDiet;
         let index = newArr.indexOf(value)
-        let removed = newArr.splice(index, 1)
-        return { [name]: newArr }
+        if(index != -1){
+          let removed = newArr.splice(index, 1)
+          return { [name]: newArr }
+        }
       })
       return;
     }

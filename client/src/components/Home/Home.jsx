@@ -61,6 +61,9 @@ const Home = () => {
 
   const dietSelect = (e) => {
     const diet = e.target.value;
+
+    setCurrentPage(0);
+    
     if (diet === "null") {
       return satDataFromApi(allRecipes)
     }
